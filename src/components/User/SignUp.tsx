@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { ChangeEvent,use, useState } from "react";
 import { User, UserRole } from "../../models/User";
 
 export const SignUp = () => {
@@ -10,6 +10,12 @@ export const SignUp = () => {
             password: "",
             role: UserRole.ADMIN
     })
+    // Catch Input values
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) =>{
+       const { name, value} = e.target
+       setUser((prev)=> ({...prev, [name]: value}))
+    }
+
     return (
          <>
      
@@ -33,9 +39,10 @@ export const SignUp = () => {
                             <div className="mt-2">
                                 <input
                                     id="first-name"
-                                    name="first-name"
+                                    name="firstName"
                                     type="text"
-                                    value={user.firstName}     
+                                    value={user.firstName}   
+                                    onChange={handleOnChange}  
                                     required
                                     className="block w-full rounded-md bg-blue/5 px-3 py-1.5 text-base text-blue outline-1 -outline-offset-1 outline-blue/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                                 />
@@ -53,9 +60,10 @@ export const SignUp = () => {
                             <div className="mt-2">
                                 <input
                                     id="last-name"
-                                    name="last-name"
+                                    name="lastName"
                                     type="text"
                                     value={user.lastName}
+                                    onChange={handleOnChange}
 
                                     required
                                     className="block w-full rounded-md bg-blue/5 px-3 py-1.5 text-base text-blue outline-1 -outline-offset-1 outline-blue/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
@@ -73,6 +81,7 @@ export const SignUp = () => {
                                     name="email"
                                     type="email"
                                     value={user.email}
+                                    onChange={handleOnChange}
                
                                     required
                                     className="block w-full rounded-md bg-blue/5 px-3 py-1.5 text-base text-blue outline-1 -outline-offset-1 outline-blue/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
@@ -89,6 +98,7 @@ export const SignUp = () => {
                                     name="password"
                                     type="password"
                                     value={user.password}
+                                    onChange={handleOnChange}
                
                                     required
                                     className="block w-full rounded-md bg-blue/5 px-3 py-1.5 text-base text-blue outline-1 -outline-offset-1 outline-blue/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
@@ -106,6 +116,7 @@ export const SignUp = () => {
                                     name="role"
                                     type="text"
                                     value={user.role}
+                                    onChange={handleOnChange}
          
                                     required
                                     className="block w-full rounded-md bg-blue/5 px-3 py-1.5 text-base text-blue outline-1 -outline-offset-1 outline-blue/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
